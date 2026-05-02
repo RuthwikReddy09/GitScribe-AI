@@ -146,7 +146,3 @@ GET  /health
 POST /webhooks/github
 POST /process-pr
 ```
-
-## Notes
-
-GitScribe is designed to update documentation files only. It skips binary files, lock files, large files, and unsupported extensions.
