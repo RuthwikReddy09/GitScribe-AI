@@ -1,0 +1,15 @@
+name: Call GitScribe
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  gitscribe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call deployed GitScribe API
+        run: |
+          curl -X POST "${{ secrets.GITSCRIBE_API_URL }}/process-pr" \
+            -H "Content-Type: application/json" \
+            -d '{"owner":"${{ github.repository_owner }}","repo":"${{ github.event.repository.name }}","pull_number":${{ github.event.pull_request.number }}}'
